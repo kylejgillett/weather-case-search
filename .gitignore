@@ -170,3 +170,5 @@ docker-compose-es.yml
 .env-old
 
 .vscode
+
+.idea

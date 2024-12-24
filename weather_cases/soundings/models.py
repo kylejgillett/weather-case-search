@@ -16,6 +16,7 @@ class ProfileMetadata(BaseModel):
     lat: float
     lon: float
     timestamp: datetime
+    source: str
 
 
 class Profile(ProfileMetadata):

@@ -48,6 +48,7 @@ def _to_dict(sounding: Profile) -> dict:
     sounding_dict["lat"] = round(sounding_dict["lat"], 2)
     sounding_dict["lon"] = round(sounding_dict["lon"], 2)
     sounding_dict["timestamp"] = sounding_dict["timestamp"].isoformat()
+    sounding_dict["source"] = sounding_dict["source"]
     sounding_dict["data"] = dict(sounding_dict["data"])
     return sounding_dict
 
