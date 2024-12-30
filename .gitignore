@@ -171,4 +171,4 @@ docker-compose-es.yml
 
 .vscode
 
-.idea
+.idea/

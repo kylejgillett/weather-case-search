@@ -45,7 +45,7 @@ def load_soundings(from_idx: int, to_idx: int):
 
 def _to_dict(sounding: Profile) -> dict:
     sounding_dict = dict(sounding)
-    sounding_dict["lat"] = round(sounding_dict["lat"], 2)
+    sounding_dict["lat"] = round(sounding_dict["lat"])
     sounding_dict["lon"] = round(sounding_dict["lon"], 2)
     sounding_dict["timestamp"] = sounding_dict["timestamp"].isoformat()
     sounding_dict["source"] = sounding_dict["source"]
