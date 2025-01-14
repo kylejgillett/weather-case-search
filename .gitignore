@@ -172,3 +172,4 @@ docker-compose-es.yml
 .vscode
 
 .idea/
+data/_soundings/

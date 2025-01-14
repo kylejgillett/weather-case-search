@@ -55,7 +55,7 @@ def _to_dict(sounding: Profile) -> dict:
 
 def _get_output_loc(name: str) -> str | bool:
     current_dir = os.path.dirname(os.path.abspath(__name__))
-    output_loc = os.path.join(current_dir, "data", "soundings", f"{name}.json")
+    output_loc = os.path.join(current_dir, "data", "_soundings", f"{name}.json")
 
     if os.path.exists(output_loc):
         return False
