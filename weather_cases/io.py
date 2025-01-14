@@ -45,12 +45,13 @@ def read_file(file: str, with_id: bool, filter_incomplete: bool = True) -> pd.Da
             & df.lon.notnull()
         ]
 
-    if with_id:
-        df["id"] = df.apply(to_hash, axis=1)
-
     for col in ["outbreak", "nickname", "user_comments"]:
         df[col] = df[col].str.replace(r'[\'"]', "", regex=True)
 
     df["event_name"] = df["event_name"].str.replace(r"-{2,}", "–", regex=True)
+
+    if with_id:
+        df["id"] = df.apply(to_hash, axis=1)
+
     df = df.replace({np.nan: None})
     return df
