@@ -1,20 +1,22 @@
-import json
-import os
 from fastapi import APIRouter, HTTPException
+import requests
 
 from weather_cases.soundings.models import Profile
 
 
 router = APIRouter(prefix="/soundings", tags=["soundings"])
 
+BUCKET_BASE_URL = "https://chase-archive-soundings.nyc3.cdn.digitaloceanspaces.com"
+
 
 @router.get("/{case_id}")
 def get_sounding(case_id: str) -> Profile:
-    current_dir = os.path.dirname(os.path.abspath(__name__))
-    data_loc = os.path.join(current_dir, "data", "soundings", f"{case_id}.json")
-    if not os.path.exists(data_loc):
+    url = f"{BUCKET_BASE_URL}/{case_id}.json"
+    resp = requests.get(url)
+    if resp.status_code == 404:
         raise HTTPException(status_code=404, detail="Sounding not found")
+    elif resp.status_code != 200:
+        raise HTTPException(status_code=500, detail="Error fetching sounding")
 
-    with open(data_loc, "r") as f:
-        data = json.load(f)
-        return Profile(**data)
+    data = resp.json()
+    return Profile(**data)
