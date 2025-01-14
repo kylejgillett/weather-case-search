@@ -12,7 +12,19 @@ API to expose fuzzy search capability for storm chase cases.
 
 After installing all prerequisites, run `poetry install`.
 
-#### A note on the Metpy and the sounding scripts
+### Running the Scripts
+
+#### Soundings Script
+
+First, create a `_soundings` folder inside `data`. This is where the files will be dumped in. Then run:
+
+`poetry run load_soundings a b`
+
+Where `a` and `b` are the start and end indices of the cases. (So to start off testing any updates to the scripts, set `a = 0` and `b = 2` such that the command is `poetry run load_soundings 0 2` to run the first two cases and work up from there).
+
+NEW: The files in the `_soundings` folder should be uploaded to an S3 bucket to expose them thru the API, and not committed directly to the repo. Please contact Jim to help with this.
+
+#### A note on Metpy
 
 Due to `Metpy` having dependencies on `pyproj` and `netcdf4`, which do not play well with Poetry, if you get errors like these (I'm using a Mac, so YMMV):
 
